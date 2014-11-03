@@ -43,56 +43,113 @@ The majority of the questions were collected from:
 * Tell me about the last major Linux project you finished.
 * Tell me about the biggest mistake you've made in [some recent time period] and how you would do it differently today. What did you learn from this experience?
 * What function does DNS play on a network?
+  Mappings of addresses to names and vice versa (known as records) are stored in a database
 * What is HTTP?
+  HyperText Transfer Protocol (HTTP) is the underlying protocol used by the World Wide Web to define how messages  are formatted and transmitted. 
 * What is an HTTP proxy and how does it work?
+  A HTTP proxy speaks the HTTP protocol, it's especially made for HTTP connections but can be abused for other protocols as well
 * What is SMTP? Give the basic scenario of how a mail message is delivered via SMTP!
+  Simple Mail Transfer Protocol (SMTP) is an Internet standard for electronic mail (e-mail) transmission.
 * What is RAID? What is RAID0, RAID1, RAID5, RAID10?
+  RAID(redundant array of independent disks).
+  RAID0: Blocks striped, no mirror. no parity. 
+  RAID1: Blocks mirrored, no stripe. no parity. 
+  RAID5: min 3 disks. blocks striped, distributed parity.
+  RAID10: min 4 disks, blocks mirrored. 
 * What is a level 0 backup? What is an incremental backup?
+  level 0: full backup. 
+  Incremental: identifying, recording and, thus, preserving only those files that have changed since the last 
+  backup. 
 * Describe the general file system hierarchy of a Linux system.
+  central concepts are superblock, inode, data block, directory block, and indirection block.Linux chooses to have   a single hierarchical directory structure. Everything starts from the root directory, represented by /, and then expands into sub-directories instead of having so-called 'drives'. 
+       /bin       Essential command binaries
+       /boot      Static files of the boot loader
+       /dev       Device files
+       /etc       Host-specific system configuration
+       /lib       Essential shared libraries and kernel modules
+       /media     Mount point for removeable media
+       /mnt       Mount point for mounting a filesystem temporarily
+       /opt       Add-on application software packages
+       /sbin      Essential system binaries
+       /srv       Data for services provided by this system
+       /tmp       Temporary files
+       /usr       Secondary hierarchy
+       /var       Variable data
 
 
 ####[[⬆]](#toc) <a name='simple'>Simple Linux Questions:</a>
 
 * What is the name and the UID of the administrator user?
+  Root, UID: 0. 
 * How to list all files, including hidden one, in a directory?
+  ls -a
 * What is the Unix/Linux command to remove a directory and its contents?
+  rm -rf directoryname
 * Which command will show you free/used memory? Does free memory exist on Linux?
+  free
 * How to search for the string "my konfi is the best" in files of a directory recursively?
+  cd /path/to/dir
+  find . -type f -exec grep -l "word" {} +
 * How to connect to a remote server or what is SSH?
 * How to get all environment variables and how can you use them?
+  printenv
 * I get "command not found" for ```ifconfig -a```. What can be wrong?
+  as root? 
 * What happens if I type TAB-TAB?
+  display all methods
 * What command will show the available disk space on the Unix/Linux system?
+  df -h #human readable
 * What command is used to lookup DNS records?
+  dig
 * What Unix/Linux commands will alter a files ownership, files permissions?
+  chown, chmod
 * What does ```chmod +x FILENAME```do?
+  exe
 * What does the permission 0750 on a file mean?
+Owner may read, write and execute. The Group may read and execute. (but not write) The world may not do anything with this file.
+  0750 = User:rwx Group:r-x World:---
 * What does the permission 0750 on a directory mean?
+  0755 (drwxr-xr-x)
 * How to add a new system user without login permissions?
 * How to add/remove a group from a user?
+  deluser user group
 * What is a bash alias?
+  A Bash alias is essentially nothing more than a keyboard shortcut, an abbreviation, a means of avoiding typing a long command sequence. If, for example, we include alias lm="ls -l. more" in the ~/.bashrc file, then each lm typed at the command-line will automatically be replaced by a ls -l.
+
 * How do you set the mail address of the root/a user?
+  /etc/alias
 * What does CTRL-c do?
 * What is in /etc/services?
 * How to redirect STDOUT and STDERR in bash? (> /dev/null 2>&1)
 * What is the difference between UNIX and Linux
 * What is the difference between Telnet and SSH?
 * Explain the three load averages and what do they indicate
+  Load average is a gauge of how many processes are on average, concurrently demanding CPU attention.
+  the load average of the system over the last 1, 5, and 15 minutes.
 
 
 ####[[⬆]](#toc) <a name='medium'>Medium Linux Questions:</a>
 
 * What do the following commands do?
  * ```tee```
+   Tee command is used to store and view (both at the same time) the output of any other command.
  * ```awk```
+   Awk is both a programming language and text processor that can be used to manipulate text data in very useful ways.
  * ```tr```
+  tr abbreviated as translate or transliterate. It takes as parameters two sets of characters, and replaces occurrences of the characters in the first set with the corresponding elements from the other set i.e. it is used to translate characters.
  * ```cut```
+  cut is used for text processing
  * ```tac```
+    Concatenate and print files in reverse.
  * ```curl```
+   transfer a URL
  * ```wget```
+wget stands for "web get". It is a command-line utility which downloads files over a network.
  * ```watch```
+     execute a program periodically, showing output fullscreen
  * ```tail```
 * What does a ```&``` after a command do?
+  makes the command run in the background. 
 * What does ```& disown``` after a command do?
 * What is a packet filter and how does it work?
 * What is swap and what is it used for?
