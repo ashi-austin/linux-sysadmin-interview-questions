@@ -154,6 +154,13 @@ wget stands for "web get". It is a command-line utility which downloads files ov
 * What is a packet filter and how does it work?
 * What is swap and what is it used for?
 * What is an A record, an NS record, a PTR record, a CNAME record, an MX record?
+
+An A record matches up a domain (or subdomain) to an IP address.
+NS records or name server records set the nameservers for a domain (or subdomain).
+A PTR record or pointer record matches up an IP address to a domain (or subdomain), allowing reverse DNS queries to function.
+An MX record or mail exchange record sets the mail delivery destination for a domain (or subdomain).
+A CNAME record or Canonical Name record matches up a domain (or subdomain) to a different domain.
+
  * Are there any other RRs and what are they used for?
 * What is the sticky bit?
 * What is the difference between hardlinks and symlinks? What happens when you remove the source to a symlink/hardlink?
@@ -161,15 +168,34 @@ wget stands for "web get". It is a command-line utility which downloads files ov
 * Howto force/trigger a file system check on next reboot?
 * What is SNMP and what is it used for?
 * What is a runlevel and how to get the current runlevel?
+ID	Name	Description
+0	Halt	Shuts down the system.
+1	Single-user Mode	Mode for administrative tasks.[2][2]
+2	Multi-user Mode	Does not configure network interfaces and does not export networks services.[3]
+3	Multi-user Mode with Networking	Starts the system normally.[4]
+4	Not used/User-definable	For special purposes.
+5	Start the system normally with appropriate display manager. ( with GUI )	Same as runlevel 3 + display manager.
+6	Reboot	Reboots the system.
+
 * What is SSH port forwarding?
 * What is the difference between local and remote port forwarding?
 * What steps to add a user to a system without using useradd/adduser?
+Edit /etc/passwd with vipw and add a new line for the new account. Be careful with the syntax. Do not edit directly with an editor. vipw locks the file, so that other commands won't try to update it at the same time. You should make the password field be `*', so that it is impossible to log in.
+Similarly, edit /etc/group with vigr, if you need to create a new group as well.
+Create the home directory of the user with mkdir.
+Copy the files from /etc/skel to the new home directory.
+Fix ownerships and permissions with chown and chmod
+
 * What is MAJOR and MINOR numbers of special files?
+major number identifies the driver associated with the device.
+minor number is used by the kernel to determine exactly which device is being referred to.
+
 * Describe a scenario when you get a "filesystem is full" error, but 'df' shows there is free space.
 * Describe a scenario when deleting a file, but 'df' not showing the space being freed.
 * Describe how 'ps' works.
 * What happens to a child process that dies and has no parent process to wait for it and what’s bad about this?
 * How to know which process listens on a specific port?
+  netstat -tulpn
 
 
 ####[[⬆]](#toc) <a name='hard'>Hard Linux Questions:</a>
@@ -177,20 +203,41 @@ wget stands for "web get". It is a command-line utility which downloads files ov
 * What is the difference between processes and threads?
 * What is a tunnel and how you can bypass a http proxy?
 * What is the difference between IDS and IPS?
+Firewall - A device or application that analyzes packet headers and enforces policy based on protocol type, source address, destination address, source port, and/or destination port. Packets that do not match policy are rejected.
+Intrusion Detection System - A device or application that analyzes whole packets, both header and payload, looking for known events. When a known event is detected a log message is generated detailing the event.
+Intrusion Prevention System - A device or application that analyzes whole packets, both header and payload, looking for known events. When a known event is detected the packet is rejected.
+
 * What shortcuts do you use on a regular basis?
 * What is the Linux Standard Base?
+The Linux Standard Base (LSB) is a joint project by several Linux distributions under the organizational structure of the Linux Foundation to standardize the software system structure, including the filesystem hierarchy used in the GNU/Linux operating system.
+
 * What is an atomic operation?
+execute atomically without interruption
+
 * Your freshly configured http server is not running after a restart, what can you do?
 * What kind of keys are in ~/.ssh/authorized_keys and what it is this file used for?
 * I've added my public ssh key into authorized_keys but I'm still getting a password prompt, what can be wrong?
 * Did you ever create RPM's, DEB's or solaris pkg's?
 * What does ```:(){ :|:& };:``` do on your system and why you would care about that?
 * How trace system call and signal?
+  strace
 * What's happening when the Linux kernel is starting the OOM killer, how does it choose which process to kill first.
+ideal candidate for liquidation is a recently started, non privileged process which together with its children uses lots of memory, has been nice'd, and does no raw I/O
+
+
 * Describe the linux boot process with as much detail as possible, starting from when the system is powered on and ending when you get a prompt.
+  BIOS, MBR, BOOTLOADER, KERNEL, INIT, RUNLEVEL
+
 * What's a chroot jail?
+A chroot on Unix operating systems is an operation that changes the apparent root directory for the current running process and its children.
+
 * When trying to umount a directory it says it's busy, how to find out which PID holds the directory?
+lsof
 * What's LD_PRELOAD and when it's used?
+A list of additional, user-specified, ELF shared libraries to
+              be loaded before all others.  The items of the list can be
+              separated by spaces or colons.  This can be used to
+              selectively override functions in other shared libraries.
 * You run a binary and nothing happens, how do you debug what's doing?
 
 
